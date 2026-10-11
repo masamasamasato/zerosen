@@ -308,22 +308,23 @@
           <p class="contact-hello">まずはお電話で</p>
           <p class="contact-tel"><a href="tel:0191485020"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.2 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1l-2.2 2.2z"/></svg><span>0191-48-5020</span></a></p>
           <p class="contact-sub">昼 11:00–14:00　夜 17:00–21:00（L.O.20:30）<br>水曜はお休みです（不定休あり）</p>
-          <p class="contact-mail-line">メールは <a href="mailto:info@zerosen.example">info@zerosen.example</a></p>
         </div>
-        <form class="contact-form" action="#" method="post">
-          <p class="form-lead">フォームでも送れます</p>
-          <label>お名前<input type="text" name="name" placeholder="例：山田"></label>
-          <label>メールアドレス<input type="email" name="email" placeholder="例：mail@example.com"></label>
-          <label>なにについて？
-            <select name="topic">
-              <option>席・予約のこと</option>
-              <option>メニューのこと</option>
-              <option>取材・メディア</option>
-              <option>そのほか</option>
-            </select>
-          </label>
-          <label>メッセージ<textarea name="body" rows="5" placeholder="ざっくりで大丈夫です"></textarea></label>
-          <button type="submit" class="contact-submit"><svg class="ico-mail" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h15A1.5 1.5 0 0 1 21 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5v-11Zm1.7.5 7.3 5.1L19.3 7H4.7Zm14.8 1.3-6.9 4.8a1.2 1.2 0 0 1-1.4 0L4.3 8.8V17h15.2V8.3Z" fill="currentColor"/></svg>メールで送る</button>
+        <form class="contact-form is-preparing" action="#" method="post">
+          <p class="form-lead" id="contact-preparing">準備中・電話でどうぞ</p>
+          <fieldset disabled>
+            <label>お名前<input type="text" name="name" placeholder="例：山田" disabled></label>
+            <label>メールアドレス<input type="email" name="email" placeholder="例：mail@example.com" disabled></label>
+            <label>なにについて？
+              <select name="topic" disabled>
+                <option>席・予約のこと</option>
+                <option>メニューのこと</option>
+                <option>取材・メディア</option>
+                <option>そのほか</option>
+              </select>
+            </label>
+            <label>メッセージ<textarea name="body" rows="5" placeholder="ざっくりで大丈夫です" disabled></textarea></label>
+            <button type="submit" class="contact-submit" disabled>準備中</button>
+          </fieldset>
         </form>
       </div>
     </div>
