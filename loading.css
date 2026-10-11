@@ -1,0 +1,90 @@
+/* ============================================================
+   零SEN loading overlay  (preview: preview-loading.html)
+   Include: <link rel="stylesheet" href="loading.css"> + markup from loading-snippet.html
+   ============================================================ */
+.zs-loader{
+  --zs-bg:#0a0a0a; --zs-ink:#f5f2eb;
+  --m:min(46vw,300px);                 /* mark width */
+  --lift-delay:.32s; --lift-dur:1.25s; /* chopsticks lift timing */
+  --word-delay:1.38s;
+  position:fixed; inset:0; z-index:9999;
+  display:grid; place-items:center;
+  background:var(--zs-bg);
+  opacity:1; visibility:visible;
+  transition:opacity .6s cubic-bezier(.4,0,.2,1), visibility 0s linear .6s;
+}
+.zs-loader.is-done{opacity:0; visibility:hidden; pointer-events:none}
+html.zs-loading, html.zs-loading body{overflow:hidden}
+
+.zs-lockup{
+  display:flex; align-items:flex-end;
+  transform:translateX(calc(var(--m) * .38));
+  animation:zs-center .7s cubic-bezier(.65,0,.25,1) var(--word-delay) both;
+}
+.zs-mark{width:var(--m); height:calc(var(--m) * 470 / 480); display:block; overflow:visible}
+.zs-word{
+  height:calc(var(--m) * .6); width:auto; display:block;
+  margin:0 0 calc(var(--m) * .07) calc(var(--m) * -.03);
+  opacity:0; clip-path:inset(0 100% 0 0);
+  animation:zs-word .7s cubic-bezier(.65,0,.25,1) var(--word-delay) both;
+}
+
+/* --- SVG parts --- */
+.zs-mark .ink{fill:var(--zs-ink)}
+.zs-mark .cut{fill:none; stroke:var(--zs-bg)}
+.zs-mark .bowl-back{fill:var(--zs-bg)}
+.zs-mark .noodle{fill:none; stroke:var(--zs-ink); stroke-width:7.5; stroke-linecap:round; stroke-linejoin:round}
+.zs-mark{animation:zs-fade .4s ease-out both}
+
+/* chopsticks + noodles travel together: dipped in bowl -> lifted */
+.zs-mark .lift{
+  transform-box:view-box; transform-origin:470px 20px;
+  animation:zs-lift var(--lift-dur) cubic-bezier(.55,0,.2,1) var(--lift-delay) both;
+}
+/* the upper chopstick pinches before lifting */
+.zs-mark .stick-top{
+  transform-box:view-box; transform-origin:460px 4px;
+  animation:zs-pinch .5s ease-in-out calc(var(--lift-delay) - .2s) both;
+}
+/* noodles stretch while pulled, then settle */
+.zs-mark .stretch{
+  transform-box:view-box; transform-origin:150px 88px;
+  animation:zs-stretch var(--lift-dur) cubic-bezier(.4,0,.2,1) var(--lift-delay) both;
+}
+/* gentle sway once lifted */
+.zs-mark .sway{
+  transform-box:view-box; transform-origin:150px 88px;
+  animation:zs-sway 1.4s ease-in-out calc(var(--lift-delay) + var(--lift-dur) - .2s) infinite alternate both;
+}
+/* broth drops falling back into the bowl */
+.zs-mark .drop{fill:var(--zs-ink); opacity:0;
+  animation:zs-drop .9s cubic-bezier(.5,0,1,1) calc(var(--lift-delay) + var(--lift-dur) * .8) infinite}
+.zs-mark .drop.d2{animation-delay:calc(var(--lift-delay) + var(--lift-dur) * .8 + .45s)}
+
+@keyframes zs-fade{from{opacity:0; transform:translateY(6px)}to{opacity:1; transform:none}}
+@keyframes zs-lift{
+  0%  {transform:translateY(200px) rotate(-6deg)}
+  14% {transform:translateY(208px) rotate(-6.8deg)}  /* grab: dip a touch deeper */
+  72% {transform:translateY(-7px) rotate(.7deg)}      /* overshoot */
+  88% {transform:translateY(2px) rotate(-.15deg)}
+  100%{transform:translateY(0) rotate(0)}
+}
+@keyframes zs-pinch{0%{transform:rotate(2.2deg)}100%{transform:rotate(0)}}
+@keyframes zs-stretch{
+  0%,20%{transform:scaleY(1)}
+  62%{transform:scaleY(1.045)}
+  84%{transform:scaleY(.985)}
+  100%{transform:scaleY(1)}
+}
+@keyframes zs-sway{from{transform:skewX(-1.2deg)}to{transform:skewX(1.4deg)}}
+@keyframes zs-drop{
+  0%{opacity:0; transform:translateY(0)}
+  15%{opacity:.9}
+  100%{opacity:.9; transform:translateY(46px)}
+}
+@keyframes zs-word{from{opacity:0; clip-path:inset(0 100% 0 0)}to{opacity:1; clip-path:inset(0 0 0 0)}}
+@keyframes zs-center{to{transform:translateX(0)}}
+
+@media (prefers-reduced-motion:reduce){
+  .zs-loader *, .zs-loader{animation-duration:.01ms !important; animation-delay:0s !important; animation-iteration-count:1 !important}
+}
