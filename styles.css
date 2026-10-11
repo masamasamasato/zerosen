@@ -347,40 +347,34 @@ button,.btn{font-weight:700}
 .dish.no-photo{aspect-ratio:3/2;background:#1d1a16;border:1px solid rgba(255,255,255,.08)}
 .dish.no-photo .dish-body{background:none}
 
-/* 狭い画面: 横ナビを隠し、全画面の縦メニューにする */
+/* 狭い画面: 横ナビを隠し、全画面の縦メニューにする。
+   パネルは display を切らず、opacity と translate だけ 300ms で動かす。 */
 @media (max-width:720px){
-  .nav-toggle{display:inline-flex;position:relative}
+  .nav-toggle{display:inline-flex;position:relative;z-index:2}
+  .bar-logo{position:relative;z-index:2}
   .nav-toggle .nav-toggle-open,
-  .nav-toggle .nav-toggle-close{transition:opacity 200ms ease}
-  .nav-toggle .nav-toggle-close{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0}
+  .nav-toggle .nav-toggle-close{transition:opacity 300ms ease-in-out}
+  .nav-toggle .nav-toggle-close{position:absolute;top:50%;left:50%;width:24px;height:24px;margin:-12px 0 0 -12px;opacity:0}
   .bar.is-open:not(.is-closing) .nav-toggle .nav-toggle-open{opacity:0}
   .bar.is-open:not(.is-closing) .nav-toggle .nav-toggle-close{opacity:1}
   .bar-inner{display:grid;grid-template-columns:1fr auto;align-items:center;padding:8px 16px}
-  .bar nav{display:none}
+  .bar::before{
+    content:"";position:fixed;inset:0;z-index:1;background:#0a0a0a;opacity:0;
+    pointer-events:none;transition:opacity 300ms ease-in-out
+  }
+  .bar.is-open:not(.is-closing)::before{opacity:1;pointer-events:auto}
   .bar.is-open,
-  .bar.is-closing{
-    position:fixed;inset:0;z-index:30;overflow:auto;border-bottom-color:transparent
+  .bar.is-closing{z-index:30;border-bottom-color:transparent}
+  .bar nav{
+    display:flex;position:fixed;z-index:1;top:68px;left:0;right:0;bottom:0;
+    flex-direction:column;align-items:stretch;gap:0;margin:0;padding:8px 20px 32px;
+    overflow:auto;font-size:17px;letter-spacing:.12em;background:transparent;
+    opacity:0;transform:translateY(-32px);pointer-events:none;
+    transition:opacity 300ms ease-in-out,transform 300ms ease-in-out
   }
-  .bar.is-open::before,
-  .bar.is-closing::before{
-    content:"";position:absolute;inset:0;z-index:0;background:#0a0a0a;opacity:0;
-    pointer-events:none;transition:opacity 240ms ease
-  }
-  .bar.is-open:not(.is-closing)::before{opacity:1}
-  .bar.is-open .bar-inner,
-  .bar.is-closing .bar-inner{position:relative;z-index:1;align-content:start;min-height:100%}
-  .bar.is-open nav,
-  .bar.is-closing nav{
-    display:flex;flex-direction:column;align-items:stretch;gap:0;
-    grid-column:1 / -1;grid-row:2;margin:8px 0 0;padding:0 0 32px;
-    font-size:17px;letter-spacing:.12em;
-    opacity:0;transform:translateY(-10px);
-    transition:opacity 240ms ease,transform 240ms ease
-  }
+  .bar.is-open:not(.is-closing) nav{opacity:1;transform:translateY(0);pointer-events:auto}
   .bar.is-closing nav{pointer-events:none}
-  .bar.is-open:not(.is-closing) nav{opacity:1;transform:translateY(0)}
-  .bar.is-open nav a,
-  .bar.is-closing nav a{
+  .bar nav a{
     display:flex;align-items:center;min-height:52px;padding:12px 4px;
     border-bottom:1px solid rgba(255,255,255,.14);white-space:nowrap;
     text-shadow:none
@@ -392,10 +386,7 @@ button,.btn{font-weight:700}
 @media (max-width:720px) and (prefers-reduced-motion:reduce){
   .nav-toggle .nav-toggle-open,
   .nav-toggle .nav-toggle-close,
-  .bar.is-open::before,
-  .bar.is-closing::before,
-  .bar.is-open nav,
-  .bar.is-closing nav{transition:none}
-  .bar.is-open nav,
-  .bar.is-closing nav{transform:none}
+  .bar::before,
+  .bar nav{transition:none}
+  .bar nav{transform:none}
 }
