@@ -381,7 +381,7 @@
 })();
 </script>
 <script>
-/* 狭い画面のヘッダーメニュー。開閉は is-open / is-closing で 240ms */
+/* 狭い画面のヘッダーメニュー。開閉は is-open / is-closing で 300ms */
 (function(){
   var bar=document.querySelector('.bar');
   var btn=document.querySelector('.nav-toggle');
@@ -393,7 +393,6 @@
   var foot=document.querySelector('.foot');
   var generation=0;
   var closeTimer=0;
-  var priming=false;
   function reduced(){ return reduceMq.matches; }
   function setOpen(open){
     if(!mq.matches) open=false;
@@ -402,46 +401,41 @@
     if(closeTimer){ clearTimeout(closeTimer); closeTimer=0; }
     btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     btn.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+    var hide=mq.matches && !open;
+    nav.setAttribute('aria-hidden', hide ? 'true' : 'false');
+    nav.inert=hide;
     if(main) main.inert=open;
     if(foot) foot.inert=open;
     if(open){
       document.body.classList.add('nav-open');
-      if(!bar.classList.contains('is-open')){
-        bar.classList.add('is-open');
-        if(!reduced()){
-          priming=true;
-          bar.classList.add('is-closing');
-          requestAnimationFrame(function(){
-            requestAnimationFrame(function(){
-              if(gen!==generation) return;
-              priming=false;
-              bar.classList.remove('is-closing');
-            });
-          });
-        }
-      }else{
-        priming=false;
-        bar.classList.remove('is-closing');
-      }
+      bar.classList.remove('is-closing');
+      bar.classList.add('is-open');
       return;
     }
     document.body.classList.remove('nav-open');
-    if(!bar.classList.contains('is-open')) return;
-    if(reduced() || !mq.matches || priming){
-      priming=false;
+    if(!bar.classList.contains('is-open')){
+      bar.classList.remove('is-closing');
+      return;
+    }
+    if(reduced() || !mq.matches){
       bar.classList.remove('is-open','is-closing');
       return;
     }
     bar.classList.add('is-closing');
+    bar.classList.remove('is-open');
     function done(e){
       if(e && (e.target!==nav || e.propertyName!=='opacity')) return;
       nav.removeEventListener('transitionend', done);
       if(closeTimer){ clearTimeout(closeTimer); closeTimer=0; }
       if(gen!==generation) return;
-      bar.classList.remove('is-open','is-closing');
+      bar.classList.remove('is-closing');
     }
     nav.addEventListener('transitionend', done);
-    closeTimer=setTimeout(done, 320);
+    closeTimer=setTimeout(done, 400);
+  }
+  if(mq.matches){
+    nav.setAttribute('aria-hidden','true');
+    nav.inert=true;
   }
   btn.addEventListener('click', function(){
     setOpen(btn.getAttribute('aria-expanded')!=='true');
@@ -466,6 +460,7 @@
   function onMq(){ if(!mq.matches) setOpen(false); }
   if(mq.addEventListener) mq.addEventListener('change', onMq);
   else if(mq.addListener) mq.addListener(onMq);
+  window.addEventListener('resize', onMq);
 })();
 </script>
 <script src="loading.js"></script>
