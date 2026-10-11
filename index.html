@@ -46,14 +46,18 @@
 <header class="bar">
   <div class="wrap bar-inner">
     <a class="bar-logo" href="#"><img src="img/logo-header.png" alt="ZERO SEN"></a>
-    <nav>
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="メニューを開く">
+      <svg class="nav-toggle-open" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <svg class="nav-toggle-close" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+    <nav id="site-nav" aria-label="サイト内メニュー">
       <a href="#menu">メニュー</a>
       <a href="#news">お知らせ</a>
       <a href="#access">営業時間</a>
       <a href="#access">アクセス</a>
       <a href="#contact">お問い合わせ</a>
     </nav>
-</div>
+  </div>
 </header>
 
 <main>
@@ -66,7 +70,7 @@
       </div>
       <div class="hero-today">
         <p class="hero-today-label">本日の営業時間</p>
-        <p class="hours">昼 11:00–14:00　／　夜 17:00–21:00（L.O.20:30）</p>
+        <p class="hours"><span>昼 11:00–14:00</span><span class="hours-sep">／</span><span>夜 17:00–21:00（L.O.20:30）</span></p>
       </div>
     </div>
   </section>
@@ -374,6 +378,50 @@
   m.querySelectorAll('[data-close]').forEach(function(el){el.addEventListener('click',function(){m.classList.remove('is-open')})});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')m.classList.remove('is-open')});
   document.querySelectorAll('a.dish[href="#dish-modal"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();m.classList.add('is-open')})});
+})();
+</script>
+<script>
+/* 狭い画面のヘッダーメニュー */
+(function(){
+  var bar=document.querySelector('.bar');
+  var btn=document.querySelector('.nav-toggle');
+  var nav=document.getElementById('site-nav');
+  if(!bar||!btn||!nav) return;
+  var mq=window.matchMedia('(max-width: 720px)');
+  var main=document.querySelector('main');
+  var foot=document.querySelector('.foot');
+  function setOpen(open){
+    if(!mq.matches) open=false;
+    bar.classList.toggle('is-open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+    document.body.classList.toggle('nav-open', open);
+    if(main) main.inert=open;
+    if(foot) foot.inert=open;
+  }
+  btn.addEventListener('click', function(){
+    setOpen(btn.getAttribute('aria-expanded')!=='true');
+  });
+  nav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      setOpen(false);
+      var id=a.getAttribute('href');
+      if(!id || id.charAt(0)!=='#') return;
+      var target=document.querySelector(id);
+      if(!target) return;
+      if(!target.hasAttribute('tabindex')) target.setAttribute('tabindex','-1');
+      target.focus({preventScroll:true});
+    });
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape' && bar.classList.contains('is-open')){
+      setOpen(false);
+      btn.focus();
+    }
+  });
+  function onMq(){ if(!mq.matches) setOpen(false); }
+  if(mq.addEventListener) mq.addEventListener('change', onMq);
+  else if(mq.addListener) mq.addListener(onMq);
 })();
 </script>
 <script src="loading.js"></script>
