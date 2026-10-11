@@ -381,23 +381,67 @@
 })();
 </script>
 <script>
-/* 狭い画面のヘッダーメニュー */
+/* 狭い画面のヘッダーメニュー。開閉は is-open / is-closing で 240ms */
 (function(){
   var bar=document.querySelector('.bar');
   var btn=document.querySelector('.nav-toggle');
   var nav=document.getElementById('site-nav');
   if(!bar||!btn||!nav) return;
   var mq=window.matchMedia('(max-width: 720px)');
+  var reduceMq=window.matchMedia('(prefers-reduced-motion: reduce)');
   var main=document.querySelector('main');
   var foot=document.querySelector('.foot');
+  var generation=0;
+  var closeTimer=0;
+  var priming=false;
+  function reduced(){ return reduceMq.matches; }
   function setOpen(open){
     if(!mq.matches) open=false;
-    bar.classList.toggle('is-open', open);
+    generation++;
+    var gen=generation;
+    if(closeTimer){ clearTimeout(closeTimer); closeTimer=0; }
     btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     btn.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
-    document.body.classList.toggle('nav-open', open);
     if(main) main.inert=open;
     if(foot) foot.inert=open;
+    if(open){
+      document.body.classList.add('nav-open');
+      if(!bar.classList.contains('is-open')){
+        bar.classList.add('is-open');
+        if(!reduced()){
+          priming=true;
+          bar.classList.add('is-closing');
+          requestAnimationFrame(function(){
+            requestAnimationFrame(function(){
+              if(gen!==generation) return;
+              priming=false;
+              bar.classList.remove('is-closing');
+            });
+          });
+        }
+      }else{
+        priming=false;
+        bar.classList.remove('is-closing');
+      }
+      return;
+    }
+    document.body.classList.remove('nav-open');
+    if(!bar.classList.contains('is-open')) return;
+    if(reduced() || !mq.matches || priming){
+      priming=false;
+      bar.classList.remove('is-open','is-closing');
+      return;
+    }
+    bar.classList.add('is-closing');
+    function done(e){
+      if(e && (e.target!==nav || e.propertyName!=='opacity')) return;
+      nav.removeEventListener('transitionend', done);
+      if(closeTimer){ clearTimeout(closeTimer); closeTimer=0; }
+      if(gen!==generation) return;
+      bar.classList.remove('is-open','is-closing');
+    }
+    nav.addEventListener('transitionend', done);
+    closeTimer=setTimeout(done, 320);
   }
   btn.addEventListener('click', function(){
     setOpen(btn.getAttribute('aria-expanded')!=='true');
