@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>管理｜鶏だしらーめん 零SEN</title>
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../"><img src="../img/logo-header-on-black.png" alt="零SEN"></a>
+  <p class="top-label">管理</p>
+  <a class="site-link" href="../">公開サイト</a>
+</header>
+
+<main class="page">
+  <section class="gate" aria-labelledby="gate-title">
+    <h1 id="gate-title">管理者ログイン</h1>
+    <p class="explain">メニュー、お知らせ、営業時間を編集します。<br>ログインはまだ接続していません。</p>
+    <button type="button" class="google-btn" id="google-login">
+      <span class="g-mark" aria-hidden="true">G</span>
+      <span class="g-label">Googleでログイン</span>
+    </button>
+    <p class="status" id="login-status" role="status" hidden>準備中です。ログインはまだ使えません。</p>
+    <a class="sample-link" href="#editor">編集画面の見本を見る</a>
+  </section>
+
+  <section id="editor" aria-labelledby="editor-title">
+    <header class="dash-head">
+      <h2 id="editor-title">編集画面</h2>
+      <p>ログイン後の見本です。入力はできますが、保存はまだできません。</p>
+    </header>
+    <nav class="tabs" aria-label="編集する内容">
+      <a href="#menu">メニュー</a>
+      <a href="#news">お知らせ</a>
+      <a href="#hours">営業時間</a>
+    </nav>
+
+    <section class="panel" id="menu" aria-labelledby="menu-title">
+      <h3 id="menu-title">メニュー</h3>
+      <p class="lead">名前、価格、説明、カテゴリ、写真URL</p>
+      <form action="#" method="post" autocomplete="off">
+        <div class="stack" id="menu-list">
+          <article class="card item">
+            <div class="fields">
+              <label class="field">名前<input name="menu-name" value="鶏醤油らーめん"></label>
+              <label class="field">価格（円）<input name="menu-price" inputmode="numeric" value="900"></label>
+              <label class="field">カテゴリ
+                <select name="menu-category">
+                  <option selected>おすすめ</option>
+                  <option>期間限定</option>
+                  <option>通常メニュー</option>
+                  <option>その他</option>
+                </select>
+              </label>
+              <label class="field wide">説明<textarea name="menu-desc" rows="2">澄んだ鶏だしに醤油のかえし。チャーシュー、メンマ、海苔。</textarea></label>
+              <label class="field wide">写真URL<input name="menu-photo" value="img/real-shoyu.jpg" placeholder="img/real-shoyu.jpg"></label>
+            </div>
+            <div class="item-bar"><button type="button" class="btn-text js-remove">削除</button></div>
+          </article>
+          <article class="card item">
+            <div class="fields">
+              <label class="field">名前<input name="menu-name" value="鶏白湯らーめん"></label>
+              <label class="field">価格（円）<input name="menu-price" inputmode="numeric" value="950"></label>
+              <label class="field">カテゴリ
+                <select name="menu-category">
+                  <option selected>おすすめ</option>
+                  <option>期間限定</option>
+                  <option>通常メニュー</option>
+                  <option>その他</option>
+                </select>
+              </label>
+              <label class="field wide">説明<textarea name="menu-desc" rows="2">とろみのある鶏白湯。チャーシュー、ほうれん草、海苔。</textarea></label>
+              <label class="field wide">写真URL<input name="menu-photo" value="img/real-paitan.jpg" placeholder="img/real-shoyu.jpg"></label>
+            </div>
+            <div class="item-bar"><button type="button" class="btn-text js-remove">削除</button></div>
+          </article>
+          <article class="card item">
+            <div class="fields">
+              <label class="field">名前<input name="menu-name" value="鶏白湯魚介つけ麺"></label>
+              <label class="field">価格（円）<input name="menu-price" inputmode="numeric" value="1100"></label>
+              <label class="field">カテゴリ
+                <select name="menu-category">
+                  <option selected>おすすめ</option>
+                  <option>期間限定</option>
+                  <option>通常メニュー</option>
+                  <option>その他</option>
+                </select>
+              </label>
+              <label class="field wide">説明<textarea name="menu-desc" rows="2">鶏白湯に魚介を合わせた濃いつけ汁。チャーシュー2種、味玉。</textarea></label>
+              <label class="field wide">写真URL<input name="menu-photo" value="img/real-tsukemen.jpg" placeholder="img/real-shoyu.jpg"></label>
+            </div>
+            <div class="item-bar"><button type="button" class="btn-text js-remove">削除</button></div>
+          </article>
+          <article class="card item">
+            <div class="fields">
+              <label class="field">名前<input name="menu-name" value="まぜそば"></label>
+              <label class="field">価格（円）<input name="menu-price" inputmode="numeric" value="1150"></label>
+              <label class="field">カテゴリ
+                <select name="menu-category">
+                  <option>おすすめ</option>
+                  <option selected>期間限定</option>
+                  <option>通常メニュー</option>
+                  <option>その他</option>
+                </select>
+              </label>
+              <label class="field wide">説明<textarea name="menu-desc" rows="2">卵黄、鶏と豚のチャーシュー、味玉、紫玉ねぎ、青ねぎ。なくなり次第終了。</textarea></label>
+              <label class="field wide">写真URL<input name="menu-photo" value="img/real-mazesoba.jpg" placeholder="img/real-shoyu.jpg"></label>
+            </div>
+            <div class="item-bar"><button type="button" class="btn-text js-remove">削除</button></div>
+          </article>
+          <article class="card item">
+            <div class="fields">
+              <label class="field">名前<input name="menu-name" value="鶏醤油チャーシューめん"></label>
+              <label class="field">価格（円）<input name="menu-price" inputmode="numeric" value="1200"></label>
+              <label class="field">カテゴリ
+                <select name="menu-category">
+                  <option>おすすめ</option>
+                  <option>期間限定</option>
+                  <option selected>通常メニュー</option>
+                  <option>その他</option>
+                </select>
+              </label>
+              <label class="field wide">説明<textarea name="menu-desc" rows="2">鶏醤油らーめんにチャーシューをたっぷり。</textarea></label>
+              <label class="field wide">写真URL<input name="menu-photo" value="img/real-shoyu-2.jpg" placeholder="img/real-shoyu.jpg"></label>
+            </div>
+            <div class="item-bar"><button type="button" class="btn-text js-remove">削除</button></div>
+          </article>
+          <article class="card item">
+            <div class="fields">
+              <label class="field">名前<input name="menu-name" value="味玉"></label>
+              <label class="field">価格（円）<input name="menu-price" inputmode="numeric" value="150"></label>
+              <label class="field">カテゴリ
+                <select name="menu-category">
+                  <option>おすすめ</option>
+                  <option>期間限定</option>
+                  <option>通常メニュー</option>
+                  <option selected>その他</option>
+                </select>
+              </label>
+              <label class="field wide">説明<textarea name="menu-desc" rows="2">単品でも注文できます。</textarea></label>
+              <label class="field wide">写真URL<input name="menu-photo" value="img/real-ajitama.jpg" placeholder="img/real-shoyu.jpg"></label>
+            </div>
+            <div class="item-bar"><button type="button" class="btn-text js-remove">削除</button></div>
+          </article>
+          <article class="card item">
+            <div class="fields">
+              <label class="field">名前<input name="menu-name" value="生ビール"></label>
+              <label class="field">価格（円）<input name="menu-price" inputmode="numeric" value="550"></label>
+              <label class="field">カテゴリ
+                <select name="menu-category">
+                  <option>おすすめ</option>
+                  <option>期間限定</option>
+                  <option>通常メニュー</option>
+                  <option selected>その他</option>
+                </select>
+              </label>
+              <label class="field wide">説明<textarea name="menu-desc" rows="2">中ジョッキ。</textarea></label>
+              <label class="field wide">写真URL<input name="menu-photo" value="" placeholder="img/real-shoyu.jpg"></label>
+            </div>
+            <div class="item-bar"><button type="button" class="btn-text js-remove">削除</button></div>
+          </article>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn add" id="add-menu">品を追加</button>
+          <button type="submit" class="btn save" disabled>保存（準備中）</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel" id="news" aria-labelledby="news-title">
+      <h3 id="news-title">お知らせ</h3>
+      <p class="lead">日付、タイトル、本文</p>
+      <form action="#" method="post" autocomplete="off">
+        <div class="stack" id="news-list">
+          <article class="card item">
+            <div class="fields">
+              <label class="field wide">日付<input type="date" name="news-date" value="2026-10-08"></label>
+              <label class="field wide">タイトル<input name="news-title" value="臨時休業のお知らせ"></label>
+              <label class="field wide">本文<textarea name="news-body" rows="3">10月22日（木）は仕込みのためお休みします。翌23日（金）から通常どおり営業します。</textarea></label>
+            </div>
+            <div class="item-bar"><button type="button" class="btn-text js-remove">削除</button></div>
+          </article>
+          <article class="card item">
+            <div class="fields">
+              <label class="field wide">日付<input type="date" name="news-date" value="2026-10-01"></label>
+              <label class="field wide">タイトル<input name="news-title" value="秋の期間限定「まぜそば」"></label>
+              <label class="field wide">本文<textarea name="news-body" rows="3">期間：10月末まで。卵黄と2種のチャーシュー、紫玉ねぎをのせた汁なしの一杯。数量がなくなり次第終了です。</textarea></label>
+            </div>
+            <div class="item-bar"><button type="button" class="btn-text js-remove">削除</button></div>
+          </article>
+          <article class="card item">
+            <div class="fields">
+              <label class="field wide">日付<input type="date" name="news-date" value="2026-09-20"></label>
+              <label class="field wide">タイトル<input name="news-title" value="営業時間の変更"></label>
+              <label class="field wide">本文<textarea name="news-body" rows="3">夜の部は17:00–21:00、ラストオーダーは20:30です。</textarea></label>
+            </div>
+            <div class="item-bar"><button type="button" class="btn-text js-remove">削除</button></div>
+          </article>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn add" id="add-news">お知らせを追加</button>
+          <button type="submit" class="btn save" disabled>保存（準備中）</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel" id="hours" aria-labelledby="hours-title">
+      <h3 id="hours-title">営業時間・定休日</h3>
+      <p class="lead">曜日ごとの昼と夜。定休の日は時間を入れません。</p>
+      <form action="#" method="post" autocomplete="off">
+        <div class="card">
+          <div class="lo">
+            <label class="field">ラストオーダー<input type="time" name="last-order" value="20:30"></label>
+            <p class="hint">夜の部の締め時間です。公開サイトの「L.O.20:30」に対応します。</p>
+          </div>
+          <table class="hours">
+            <thead>
+              <tr>
+                <th scope="col">曜日</th>
+                <th scope="col">定休</th>
+                <th scope="col">昼</th>
+                <th scope="col">夜</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">日</th>
+                <td data-label="定休"><label class="check"><input type="checkbox" data-closed>定休</label></td>
+                <td data-label="昼"><div class="time-pair"><input type="time" value="11:00" aria-label="日曜 昼の開始"><span class="dash" aria-hidden="true">–</span><input type="time" value="14:00" aria-label="日曜 昼の終了"></div></td>
+                <td data-label="夜"><div class="time-pair"><input type="time" value="17:00" aria-label="日曜 夜の開始"><span class="dash" aria-hidden="true">–</span><input type="time" value="21:00" aria-label="日曜 夜の終了"></div></td>
+              </tr>
+              <tr>
+                <th scope="row">月</th>
+                <td data-label="定休"><label class="check"><input type="checkbox" data-closed>定休</label></td>
+                <td data-label="昼"><div class="time-pair"><input type="time" value="11:00" aria-label="月曜 昼の開始"><span class="dash" aria-hidden="true">–</span><input type="time" value="14:00" aria-label="月曜 昼の終了"></div></td>
+                <td data-label="夜"><div class="time-pair"><input type="time" value="17:00" aria-label="月曜 夜の開始"><span class="dash" aria-hidden="true">–</span><input type="time" value="21:00" aria-label="月曜 夜の終了"></div></td>
+              </tr>
+              <tr>
+                <th scope="row">火</th>
+                <td data-label="定休"><label class="check"><input type="checkbox" data-closed>定休</label></td>
+                <td data-label="昼"><div class="time-pair"><input type="time" value="11:00" aria-label="火曜 昼の開始"><span class="dash" aria-hidden="true">–</span><input type="time" value="14:00" aria-label="火曜 昼の終了"></div></td>
+                <td data-label="夜"><div class="time-pair"><input type="time" value="17:00" aria-label="火曜 夜の開始"><span class="dash" aria-hidden="true">–</span><input type="time" value="21:00" aria-label="火曜 夜の終了"></div></td>
+              </tr>
+              <tr class="is-closed">
+                <th scope="row">水</th>
+                <td data-label="定休"><label class="check"><input type="checkbox" data-closed checked>定休</label></td>
+                <td data-label="昼"><div class="time-pair"><input type="time" value="11:00" aria-label="水曜 昼の開始" disabled><span class="dash" aria-hidden="true">–</span><input type="time" value="14:00" aria-label="水曜 昼の終了" disabled></div></td>
+                <td data-label="夜"><div class="time-pair"><input type="time" value="17:00" aria-label="水曜 夜の開始" disabled><span class="dash" aria-hidden="true">–</span><input type="time" value="21:00" aria-label="水曜 夜の終了" disabled></div></td>
+              </tr>
+              <tr>
+                <th scope="row">木</th>
+                <td data-label="定休"><label class="check"><input type="checkbox" data-closed>定休</label></td>
+                <td data-label="昼"><div class="time-pair"><input type="time" value="11:00" aria-label="木曜 昼の開始"><span class="dash" aria-hidden="true">–</span><input type="time" value="14:00" aria-label="木曜 昼の終了"></div></td>
+                <td data-label="夜"><div class="time-pair"><input type="time" value="17:00" aria-label="木曜 夜の開始"><span class="dash" aria-hidden="true">–</span><input type="time" value="21:00" aria-label="木曜 夜の終了"></div></td>
+              </tr>
+              <tr>
+                <th scope="row">金</th>
+                <td data-label="定休"><label class="check"><input type="checkbox" data-closed>定休</label></td>
+                <td data-label="昼"><div class="time-pair"><input type="time" value="11:00" aria-label="金曜 昼の開始"><span class="dash" aria-hidden="true">–</span><input type="time" value="14:00" aria-label="金曜 昼の終了"></div></td>
+                <td data-label="夜"><div class="time-pair"><input type="time" value="17:00" aria-label="金曜 夜の開始"><span class="dash" aria-hidden="true">–</span><input type="time" value="21:00" aria-label="金曜 夜の終了"></div></td>
+              </tr>
+              <tr>
+                <th scope="row">土</th>
+                <td data-label="定休"><label class="check"><input type="checkbox" data-closed>定休</label></td>
+                <td data-label="昼"><div class="time-pair"><input type="time" value="11:00" aria-label="土曜 昼の開始"><span class="dash" aria-hidden="true">–</span><input type="time" value="14:00" aria-label="土曜 昼の終了"></div></td>
+                <td data-label="夜"><div class="time-pair"><input type="time" value="17:00" aria-label="土曜 夜の開始"><span class="dash" aria-hidden="true">–</span><input type="time" value="21:00" aria-label="土曜 夜の終了"></div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="actions">
+          <button type="submit" class="btn save" disabled>保存（準備中）</button>
+        </div>
+      </form>
+    </section>
+  </section>
+</main>
+
+<footer class="foot">© 鶏だしらーめん 零SEN　管理画面（見本）</footer>
+
+<template id="menu-template">
+  <article class="card item">
+    <div class="fields">
+      <label class="field">名前<input name="menu-name" value="" placeholder="例：鶏醤油らーめん"></label>
+      <label class="field">価格（円）<input name="menu-price" inputmode="numeric" value="" placeholder="900"></label>
+      <label class="field">カテゴリ
+        <select name="menu-category">
+          <option selected>おすすめ</option>
+          <option>期間限定</option>
+          <option>通常メニュー</option>
+          <option>その他</option>
+        </select>
+      </label>
+      <label class="field wide">説明<textarea name="menu-desc" rows="2" placeholder="具材や味の説明"></textarea></label>
+      <label class="field wide">写真URL<input name="menu-photo" value="" placeholder="img/real-shoyu.jpg"></label>
+    </div>
+    <div class="item-bar"><button type="button" class="btn-text js-remove">削除</button></div>
+  </article>
+</template>
+
+<template id="news-template">
+  <article class="card item">
+    <div class="fields">
+      <label class="field wide">日付<input type="date" name="news-date" value=""></label>
+      <label class="field wide">タイトル<input name="news-title" value="" placeholder="例：臨時休業のお知らせ"></label>
+      <label class="field wide">本文<textarea name="news-body" rows="3" placeholder="本文"></textarea></label>
+    </div>
+    <div class="item-bar"><button type="button" class="btn-text js-remove">削除</button></div>
+  </article>
+</template>
+
+<script src="admin.js"></script>
+</body>
+</html>
