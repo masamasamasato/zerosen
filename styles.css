@@ -325,23 +325,32 @@ button,.btn{font-weight:700}
 .dm-body h4{font-size:13px;font-weight:700;letter-spacing:.1em;color:#1a1814;margin-bottom:8px}
 .dm-kodawari{margin-top:18px;padding:14px 16px;background:#f5f3ef;border-left:3px solid #1a1814;border-radius:0 8px 8px 0}
 .dm-kodawari p{font-size:14px;line-height:1.85;color:#3a362f}
+.dm-limit{margin:0 0 8px;font-size:12px;font-weight:700;letter-spacing:.12em;color:#8a5a48}
 .dm-related{margin-top:20px;padding-top:16px;border-top:1px solid #ececec}
-.dm-related ul{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-.dm-related a{display:block;border:1px solid #e6e6e6;border-radius:10px;overflow:hidden;background:#fff;color:#1a1814;box-shadow:0 1px 3px rgba(26,24,20,.06)}
+.dm-related ul{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:stretch}
+.dm-related li{display:flex;min-width:0}
+.dm-related a{display:flex;flex-direction:column;flex:1;width:100%;min-width:0;height:100%;border:1px solid #e6e6e6;border-radius:10px;overflow:hidden;background:#fff;color:#1a1814;box-shadow:0 1px 3px rgba(26,24,20,.06)}
 .dm-related a:hover{border-color:#d5cdc4;box-shadow:0 2px 6px rgba(26,24,20,.08);color:#1a1814}
-.dm-related img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
-.r-name{display:block;padding:8px 10px 0;font-size:13px;font-weight:700;letter-spacing:.03em;line-height:1.4}
-.r-price{display:block;padding:2px 10px 9px;font-size:13px;font-weight:700;color:#6b665f;font-variant-numeric:tabular-nums;line-height:1.45;white-space:nowrap}
+.dm-related img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;flex-shrink:0}
+.r-name{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden;min-height:calc(1.4em * 2 + 8px);padding:8px 10px 0;font-size:13px;font-weight:700;letter-spacing:.03em;line-height:1.4;overflow-wrap:anywhere}
+.r-price{display:block;margin-top:auto;padding:6px 10px 10px;font-size:13px;font-weight:700;color:#6b665f;font-variant-numeric:tabular-nums;line-height:1.45;white-space:nowrap}
 @media(max-width:560px){
   .dm-body{padding:18px 18px 20px}
   .dm-title,.dm-price{font-size:19px}
-  .dm-related ul{gap:8px}
 }
 /* 1画面に収まるよう高さ調整 */
 .dm-photo{aspect-ratio:auto;height:clamp(180px,28vh,260px)}
-.dm-related img{aspect-ratio:16/9}
+.dm-photo.is-hidden{display:none}
+.dm-related img{aspect-ratio:16/9;height:auto}
 .dm-body{padding:20px 26px 24px}
 .dm-kodawari{margin-top:16px}
+@media(max-width:560px){
+  .dish-modal{padding:12px 8px}
+  .dm-body{padding:16px 12px 16px}
+  .dm-related ul{gap:6px}
+  .r-name{padding:6px 6px 0;font-size:12px;letter-spacing:0;line-height:1.35;min-height:calc(1.35em * 2 + 6px)}
+  .r-price{padding:4px 6px 8px;font-size:12px;white-space:nowrap}
+}
 
 /* 写真なし商品（ドリンク等） */
 .dish.no-photo{aspect-ratio:3/2;background:#1d1a16;border:1px solid rgba(255,255,255,.08)}

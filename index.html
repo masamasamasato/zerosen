@@ -96,7 +96,7 @@
         <h3 class="menu-cat">おすすめ</h3>
         <ul class="menu-grid">
           <li>
-            <a class="dish is-selected" href="#dish-modal" aria-current="true">
+            <a class="dish is-selected" href="#dish-modal" data-dish="shoyu" aria-current="true">
               <img src="img/real-shoyu.jpg" alt="鶏醤油らーめん">
               <div class="dish-body">
                 <p class="menu-name">鶏醤油らーめん</p>
@@ -106,7 +106,7 @@
             </a>
           </li>
           <li>
-            <a class="dish" href="#menu">
+            <a class="dish" href="#dish-modal" data-dish="paitan">
               <img src="img/real-paitan.jpg" alt="鶏白湯らーめん">
               <div class="dish-body">
                 <p class="menu-name">鶏白湯らーめん</p>
@@ -116,7 +116,7 @@
             </a>
           </li>
           <li>
-            <a class="dish" href="#menu">
+            <a class="dish" href="#dish-modal" data-dish="tsukemen">
               <img src="img/real-tsukemen.jpg" alt="鶏白湯魚介つけ麺">
               <div class="dish-body">
                 <p class="menu-name">鶏白湯魚介つけ麺</p>
@@ -132,7 +132,7 @@
         <h3 class="menu-cat is-limit">期間限定</h3>
         <ul class="menu-grid">
           <li>
-            <a class="dish" href="#menu">
+            <a class="dish" href="#dish-modal" data-dish="mazesoba">
               <img src="img/real-mazesoba.jpg" alt="まぜそば">
               <div class="dish-body">
                 <p class="limit-line">期間限定　10月末まで</p>
@@ -149,7 +149,7 @@
         <h3 class="menu-cat">通常メニュー</h3>
         <ul class="menu-grid">
           <li>
-            <a class="dish" href="#menu">
+            <a class="dish" href="#dish-modal" data-dish="shoyu">
               <img src="img/real-shoyu.jpg" alt="鶏醤油らーめん">
               <div class="dish-body">
                 <p class="menu-name">鶏醤油らーめん</p>
@@ -159,7 +159,7 @@
             </a>
           </li>
           <li>
-            <a class="dish" href="#menu">
+            <a class="dish" href="#dish-modal" data-dish="chashu">
               <img src="img/real-shoyu-2.jpg" alt="鶏醤油チャーシューめん">
               <div class="dish-body">
                 <p class="menu-name">鶏醤油チャーシューめん</p>
@@ -169,7 +169,7 @@
             </a>
           </li>
           <li>
-            <a class="dish" href="#menu">
+            <a class="dish" href="#dish-modal" data-dish="paitan">
               <img src="img/real-paitan.jpg" alt="鶏白湯らーめん">
               <div class="dish-body">
                 <p class="menu-name">鶏白湯らーめん</p>
@@ -179,7 +179,7 @@
             </a>
           </li>
           <li>
-            <a class="dish" href="#menu">
+            <a class="dish" href="#dish-modal" data-dish="tsukemen">
               <img src="img/real-tsukemen.jpg" alt="鶏白湯魚介つけ麺">
               <div class="dish-body">
                 <p class="menu-name">鶏白湯魚介つけ麺</p>
@@ -195,7 +195,7 @@
         <h3 class="menu-cat">その他</h3>
         <ul class="menu-grid">
           <li>
-            <a class="dish" href="#menu">
+            <a class="dish" href="#dish-modal" data-dish="ajitama">
               <img src="img/real-ajitama.jpg" alt="味玉">
               <div class="dish-body">
                 <p class="menu-name">味玉</p>
@@ -205,7 +205,7 @@
             </a>
           </li>
           <li>
-            <a class="dish no-photo" href="#menu">
+            <a class="dish no-photo" href="#dish-modal" data-dish="beer">
               <div class="dish-body">
                 <p class="menu-name">生ビール</p>
                 <p class="menu-desc">中ジョッキ。</p>
@@ -348,7 +348,8 @@
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     </button>
     <img class="dm-photo" src="img/real-shoyu.jpg" alt="鶏醤油らーめん">
-    <div class="dm-body">
+      <div class="dm-body">
+      <p class="dm-limit" hidden></p>
       <div class="dm-head">
         <h3 class="dm-title" id="dm-title">鶏醤油らーめん</h3>
         <p class="dm-price">¥900<span class="price-tax">(税込)</span></p>
@@ -363,21 +364,119 @@
       <section class="dm-related">
         <h4>こちらもおすすめ</h4>
         <ul>
-          <li><a href="#menu"><img src="img/real-paitan.jpg" alt=""><span class="r-name">鶏白湯らーめん</span><span class="r-price">¥950<span class="price-tax">(税込)</span></span></a></li>
-          <li><a href="#menu"><img src="img/real-tsukemen.jpg" alt=""><span class="r-name">鶏白湯魚介つけ麺</span><span class="r-price">¥1,100<span class="price-tax">(税込)</span></span></a></li>
-          <li><a href="#menu"><img src="img/real-mazesoba.jpg" alt=""><span class="r-name">まぜそば（期間限定）</span><span class="r-price">¥1,150<span class="price-tax">(税込)</span></span></a></li>
+          <li><a href="#dish-modal" data-dish="paitan"><img src="img/real-paitan.jpg" alt="鶏白湯らーめん"><span class="r-name">鶏白湯らーめん</span><span class="r-price">¥950<span class="price-tax">(税込)</span></span></a></li>
+          <li><a href="#dish-modal" data-dish="tsukemen"><img src="img/real-tsukemen.jpg" alt="鶏白湯魚介つけ麺"><span class="r-name">鶏白湯魚介つけ麺</span><span class="r-price">¥1,100<span class="price-tax">(税込)</span></span></a></li>
+          <li><a href="#dish-modal" data-dish="mazesoba"><img src="img/real-mazesoba.jpg" alt="まぜそば"><span class="r-name">まぜそば（期間限定）</span><span class="r-price">¥1,150<span class="price-tax">(税込)</span></span></a></li>
         </ul>
       </section>
     </div>
   </article>
 </div>
 <script>
-/* 最小JS：×・暗幕で閉じる／鶏醤油らーめんで開く（見本） */
+/* 各商品の詳細モーダル。カードの文言を使い、鶏醤油だけ既存の詳細文を足す */
 (function(){
+  var EXTRA={
+    shoyu:{
+      desc:'チャーシュー、メンマ、海苔、青ねぎをのせた、いちばん人気の一杯。澄んだ鶏だしに醤油のかえしを合わせました。',
+      kodawari:'スープは丸鶏と鶏ガラだけを、朝から弱火で5時間。<br>アクを丁寧にすくい、濁らせずに鶏のうまみだけを引き出しています。<br>かえしの醤油は前日に仕込み、一晩寝かせてから使います。'
+    }
+  };
+  function esc(s){
+    return String(s).replace(/[&<>"']/g,function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function textPrice(el){
+    var t='';
+    for(var i=0;i<el.childNodes.length;i++){
+      if(el.childNodes[i].nodeType===3) t+=el.childNodes[i].textContent;
+    }
+    return t.replace(/\s+/g,'').trim();
+  }
+  var order=[],dishes={};
+  document.querySelectorAll('a.dish[data-dish]').forEach(function(a){
+    var id=a.getAttribute('data-dish');
+    if(dishes[id]) return;
+    var img=a.querySelector('img');
+    var limit=a.querySelector('.limit-line');
+    var name=a.querySelector('.menu-name').textContent.trim();
+    var extra=EXTRA[id]||{};
+    dishes[id]={
+      name:name,
+      desc:extra.desc||a.querySelector('.menu-desc').textContent.trim(),
+      price:textPrice(a.querySelector('.menu-price')),
+      img:img?img.getAttribute('src'):'',
+      kodawari:extra.kodawari||'',
+      limit:limit?limit.textContent.trim():'',
+      relatedName:limit?name+'（期間限定）':name
+    };
+    order.push(id);
+  });
   var m=document.getElementById('dish-modal');
+  var photo=m.querySelector('.dm-photo');
+  var title=document.getElementById('dm-title');
+  var price=m.querySelector('.dm-price');
+  var desc=m.querySelector('.dm-desc');
+  var limitEl=m.querySelector('.dm-limit');
+  var kodawari=m.querySelector('.dm-kodawari');
+  var kodawariP=kodawari.querySelector('p');
+  var relatedUl=m.querySelector('.dm-related ul');
+  var card=m.querySelector('.dm-card');
+  function renderRelated(currentId){
+    var ids=order.filter(function(id){return id!==currentId&&dishes[id].img}).slice(0,3);
+    relatedUl.innerHTML=ids.map(function(id){
+      var d=dishes[id];
+      return '<li><a href="#dish-modal" data-dish="'+esc(id)+'">'
+        +'<img src="'+esc(d.img)+'" alt="'+esc(d.name)+'">'
+        +'<span class="r-name">'+esc(d.relatedName)+'</span>'
+        +'<span class="r-price">'+esc(d.price)+'<span class="price-tax">(税込)</span></span>'
+        +'</a></li>';
+    }).join('');
+  }
+  function openDish(id,source){
+    var d=dishes[id];
+    if(!d) return;
+    var fromCard=source&&source.classList.contains('dish');
+    var imgEl=fromCard?source.querySelector('img'):null;
+    var limitNode=fromCard?source.querySelector('.limit-line'):null;
+    var showDesc=d.desc;
+    var showPrice=d.price;
+    var showImg=d.img;
+    var showLimit=d.limit;
+    if(fromCard&&!EXTRA[id]){
+      showDesc=source.querySelector('.menu-desc').textContent.trim();
+      showPrice=textPrice(source.querySelector('.menu-price'));
+      showImg=imgEl?imgEl.getAttribute('src'):'';
+      showLimit=limitNode?limitNode.textContent.trim():'';
+    }
+    title.textContent=d.name;
+    price.innerHTML=esc(showPrice)+'<span class="price-tax">(税込)</span>';
+    desc.textContent=showDesc;
+    if(showLimit){limitEl.hidden=false;limitEl.textContent=showLimit}
+    else{limitEl.hidden=true;limitEl.textContent=''}
+    if(showImg){photo.classList.remove('is-hidden');photo.src=showImg;photo.alt=d.name}
+    else{photo.classList.add('is-hidden');photo.removeAttribute('src');photo.alt=''}
+    if(d.kodawari){kodawari.hidden=false;kodawariP.innerHTML=d.kodawari}
+    else kodawari.hidden=true;
+    renderRelated(id);
+    document.querySelectorAll('a.dish[data-dish]').forEach(function(a){
+      var on=a.getAttribute('data-dish')===id;
+      a.classList.toggle('is-selected',on);
+      a.removeAttribute('aria-current');
+    });
+    var current=(source&&source.classList.contains('dish'))?source:document.querySelector('a.dish[data-dish="'+id+'"]');
+    if(current) current.setAttribute('aria-current','true');
+    card.scrollTop=0;
+    m.classList.add('is-open');
+  }
   m.querySelectorAll('[data-close]').forEach(function(el){el.addEventListener('click',function(){m.classList.remove('is-open')})});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')m.classList.remove('is-open')});
-  document.querySelectorAll('a.dish[href="#dish-modal"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();m.classList.add('is-open')})});
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a[data-dish]');
+    if(!a||!dishes[a.getAttribute('data-dish')]) return;
+    e.preventDefault();
+    openDish(a.getAttribute('data-dish'),a);
+  });
 })();
 </script>
 <script>
