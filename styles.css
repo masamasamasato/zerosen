@@ -347,7 +347,7 @@ button,.btn{font-weight:700}
 .dish.no-photo{aspect-ratio:3/2;background:#1d1a16;border:1px solid rgba(255,255,255,.08)}
 .dish.no-photo .dish-body{background:none}
 
-/* 狭い画面: 横ナビを隠し、全画面の縦メニューにする */
+/* 狭い画面: 横ナビを隠す。開閉してもヘッダーの高さと下線は固定 */
 @media (max-width:720px){
   .nav-toggle{display:inline-flex;position:relative}
   .nav-toggle .nav-toggle-open,
@@ -359,20 +359,25 @@ button,.btn{font-weight:700}
   .bar nav{display:none}
   .bar.is-open,
   .bar.is-closing{
-    position:fixed;inset:0;z-index:30;overflow:auto;border-bottom-color:transparent
+    position:fixed;top:0;left:0;right:0;z-index:30;overflow:visible;
+    border-bottom:1px solid rgba(255,255,255,.12);
+    background:transparent;transition:background-color 240ms ease
   }
+  .bar.is-open:not(.is-closing){background:#0a0a0a}
   .bar.is-open::before,
   .bar.is-closing::before{
-    content:"";position:absolute;inset:0;z-index:0;background:#0a0a0a;opacity:0;
-    pointer-events:none;transition:opacity 240ms ease
+    content:"";position:absolute;left:0;right:0;top:calc(100% + 1px);height:100svh;
+    z-index:-1;background:#0a0a0a;opacity:0;
+    transition:opacity 240ms ease
   }
   .bar.is-open:not(.is-closing)::before{opacity:1}
   .bar.is-open .bar-inner,
-  .bar.is-closing .bar-inner{position:relative;z-index:1;align-content:start;min-height:100%}
+  .bar.is-closing .bar-inner{position:relative;z-index:1}
   .bar.is-open nav,
   .bar.is-closing nav{
     display:flex;flex-direction:column;align-items:stretch;gap:0;
-    grid-column:1 / -1;grid-row:2;margin:8px 0 0;padding:0 0 32px;
+    position:absolute;z-index:1;left:16px;right:16px;top:calc(100% + 12px);
+    height:calc(100svh - 100% - 12px);margin:0;padding:0 0 32px;overflow:auto;
     font-size:17px;letter-spacing:.12em;
     opacity:0;transform:translateY(-10px);
     transition:opacity 240ms ease,transform 240ms ease
@@ -390,6 +395,8 @@ button,.btn{font-weight:700}
   .hours-sep{display:none}
 }
 @media (max-width:720px) and (prefers-reduced-motion:reduce){
+  .bar.is-open,
+  .bar.is-closing,
   .nav-toggle .nav-toggle-open,
   .nav-toggle .nav-toggle-close,
   .bar.is-open::before,
